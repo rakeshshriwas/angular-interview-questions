@@ -74,7 +74,7 @@
     }
    ```
 6. ### How would you handle errors within a custom pipe? Provide a code example.
-    When creating a custom pipe, it is important to handle potential errors to ensure that the application remains stable and provides meaningful feedback to the user. Error handling within a custom pipe can be achieved by using try-catch blocks to        catch exceptions and handle them gracefully.
+    When creating a custom pipe, it is important to handle potential errors to ensure that the application remains stable and provides meaningful feedback to the user. Error handling within a custom pipe can be achieved by using try-catch blocks to       catch exceptions and handle them gracefully.
 
    ```javascript
    import { Pipe, PipeTransform } from '@angular/core';
@@ -97,3 +97,69 @@
       }
     }
    ```
+7. ### What is directives in angular
+   In angular, directives are classes that add behaviour to an existing DOM element or an existing component instance in Angular applications.
+
+   - Directives modify the DOM and control its behavior.
+   - There are three main types: Components, Structural, and Attribute directives.
+   - Custom directives allow you to implement reusable DOM manipulation logic.
+
+   **Types of Directives:**
+
+   1. **Component Directives:** A component is essentially a directive with a template.
+
+   
+    ```javascript
+   @Component({
+      selector: 'app-example',
+      template: '<p>Hello World</p>'
+    })
+    export class ExampleComponent {}
+   ```
+      
+   2. **Structural Directives:** Used to change the structure of the DOM by adding or removing elements.
+      - *ngIf: Adds or removes elements based on a condition.
+      - *ngFor: Iterates over a collection and renders elements for each item.
+      - *ngSwitch: Displays one of multiple elements based on a condition.
+
+        ```html
+        <div *ngIf="isVisible">This is visible</div>
+        ```
+        
+   3. **Attribute Directives:** Used to modify the appearance or behavior of an element, component, or another directive.
+      - ngClass: Dynamically applies CSS classes.
+      - ngStyle: Dynamically applies inline styles.
+        
+        ```html
+        <div [ngClass]="{'active': isActive}">Styled Div</div>
+        ```
+   4. **Custom Directives:** We can also create custom directives to encapsulate reusable behavior.
+  
+      ```javascript
+      import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
+
+      @Directive({
+         selector: '[appHighlight]'
+      })
+      export class HighlightDirective {
+          constructor(private el: ElementRef, private renderer: Renderer2) {}
+    
+          @HostListener('mouseenter') onMouseEnter() {
+            this.renderer.setStyle(this.el.nativeElement, 'color', 'blue');
+          }
+    
+          @HostListener('mouseleave') onMouseLeave() {
+            this.renderer.setStyle(this.el.nativeElement, 'color', 'black');
+          }
+      }
+      ```
+      
+      ```html
+      <p appHighlight>Hover over me!</p>
+      ```
+8. ### When to use a directive?
+    Consider an application, where multiple components need to have similar functionalities. The norm thing to do is by adding this functionality individually to every component but, this task is tedious to perform. In such a situation, one can     
+    create a directive having the required functionality and then, import the directive to components which require this functionality.
+
+9. ### How does angular finds components, directives and pipes?
+    The Angular compiler finds a component or directive in a template when it can match the selector of that component or directive in that template. Whereas it finds a pipe if the pipe's name appears within the pipe syntax of the template HTML.
