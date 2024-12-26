@@ -154,6 +154,8 @@
      })
      export class SharedModule { }
      ```
+99. ### What is the purpose of common module?
+    The commonly-needed services, pipes, and directives provided by @angular/common module. Apart from these HttpClientModule is available under @angular/common/http.
 
 226. ### What are the imported modules in CLI generated feature modules?
      In the CLI generated feature module, there are two JavaScript import statements at the top of the file
@@ -300,9 +302,6 @@
       }
     }
     ```
-
-99. ### What is the purpose of common module?
-    The commonly-needed services, pipes, and directives provided by @angular/common module. Apart from these HttpClientModule is available under @angular/common/http.
 
 108. ### What is a service worker and its role in Angular?
      A service worker is a script that runs in the web browser and manages caching for an application. Starting from 5.0.0 version, Angular ships with a service worker implementation. Angular service worker is designed to optimize the end user experience of using an application over a slow or unreliable network connection, while also minimizing the risks of serving outdated content.
@@ -772,7 +771,38 @@
        console.log(this.input.nativeElement.value);
      }
      ```
+     
+138. ### What is View Encapsulation
+     View Encapsulation is a concept that helps developers manage styles and avoid style conflicts in their applications. It ensures the isolation of styles defined within a component.
+Angular supports three types of view encapsulation: Emulated, Shadow DOM, and None.
 
+	**Emulated:** Dynamically generates unique attributes to isolate styles within a component, ensuring they don't affect or get affected by styles in other components.
+
+	**Shadow DOM:** Utilizes the Browser's built-in Shadow DOM API to encapsulate styles, creating a boundary between the component and the rest of the document.
+
+	**None:** Disables view encapsulation, Styles defined in a component can affect the entire application.
+
+138. ### What is ng-content?
+     The ng-content directive in Angular is used for Content Projection. It allows you to pass content into a component from its parent component, enabling the creation of flexible and reusable components.
+ helps to increase component reusability.
+
+	```javascript
+	<div class="card">
+	 <div class="card-header">
+	   <ng-content select="[header]"></ng-content>
+	 </div>
+	 <div class="card-body">
+	   <ng-content></ng-content>
+	 </div>
+	</div>
+	
+	<my-card>
+	 <h2 header>My Card Header</h2>
+	 <p>This is the body content of my card.</p>
+	</my-card>
+	```
+ 
+     
 256. ### What are reactive forms?
      Reactive forms is a model-driven approach for creating forms in a reactive style(form inputs changes over time). These are built around observable streams, where form inputs and values are provided as streams of input values. Let's follow the below steps to create reactive forms,
      1. Register the reactive forms module which declares reactive-form directives in your app
