@@ -8,7 +8,7 @@
 |---- | ---------
 |1 | [What is pipe?](#)|
 
-79. ### What Is Angular
+1. ### What Is Angular
     Angular is a framework for building dynamic, single-page web applications (SPAs) using TypeScript, HTML, and CSS. Developed and maintained by Google, Angular provides a complete toolkit for developers to create complex, feature-rich applications efficiently.
 
     **Key Features of Angular:**
@@ -19,6 +19,25 @@
     5. **Directives**: Angular offers structural and attribute directives (like ngFor, ngIf) to manipulate DOM elements and create custom behaviors
     6. **Forms**: Angular provides robust form handling with validation, making it easier to work with user input.
     7. **HttpClient**: Angular includes a service for making HTTP requests to APIs, handling asynchronous operations efficiently
+
+2. ### What is angular CLI?
+    The Angular CLI (Command Line Interface) is a powerful tool provided by the Angular team that simplifies the development, testing, and deployment of Angular applications. It provides a set of commands that help developers streamline and automate 
+    various tasks associated with Angular projects.
+
+3. ### What is Lifecycle hooks
+   Lifecycle hooks are a set of methods in Angular that are executed at specific moments during the lifecycle of a component. These methods provide a way to tap into the Angular component lifecycle and perform custom logic or operations at specific points in time.
+
+   **There are eight lifecycle hooks in Angular:**
+
+	1. **ngOnChanges:** This lifecycle hook is executed whenever the component's input properties change
+	2. **ngOnInit:** This lifecycle hook is executed after the component's constructor method and is a good place to perform initial setup for the component.
+	3. **ngDoCheck:** This lifecycle hook is executed during every change detection cycle and is a good place to perform custom change detection.
+	4. **ngAfterContentInit:** This lifecycle hook is executed after the component's content has been initialized and is a good place to perform additional setup for the component's content.
+	5. **ngAfterContentChecked:** This lifecycle hook is executed after the component's content has been checked and is a good place to perform additional operations based on the component's content.
+	6. **ngAfterViewInit:** This lifecycle hook is executed after the component's view has been initialized and is a good place to perform additional setup for the component's view.
+	7. **ngAfterViewChecked:** This lifecycle hook is executed after the component's view has been checked and is a good place to perform additional operations based on the component's view.
+	8. **ngOnDestroy:** This lifecycle hook is executed just before the component is destroyed and is a good place to perform cleanup operations for the component.
+    
 
 79. ### What Is dev dependencies vs dependencies
     The main difference between dependencies and devDependencies in Angular is that dependencies are required for an application to run in production, while devDependencies are only needed for development and testing.
@@ -37,6 +56,25 @@
     **package.json**: This file is primarily used for managing and documenting metadata about the project, including its name, version, author, dependencies, scripts, and other configuration details. It acts as a manifest for the project.
     
     **package-lock.json**: This file is generated and updated automatically by npm when installing or updating packages. It is used to lock the exact versions of dependencies installed in the project. It ensures that the same versions of packages are installed consistently across different environments.
+    
+81. ### What are components?
+	Components are the most basic UI building block of an Angular app, which form a tree of Angular components. These components are a subset of directives. Unlike directives, components always have a template, and only one component can be instantiated per element in a template. Let's see a simple example of Angular component.
+
+	```javascript
+	import { Component } from '@angular/core';
+	
+	@Component ({
+	   selector: 'my-app',
+	   template: ` <div>
+	      <h1>{{title}}</h1>
+	      <div>Learn Angular6 with examples</div>
+	   </div> `,
+	})
+	
+	export class AppComponent {
+	   title: string = 'Welcome to Angular world';
+	}
+	```
 
 79. ### What is standalone component?
     A standalone component is a type of component which is not part of any Angular module. It provides a simplified way to build Angular applications.
@@ -162,6 +200,10 @@
 	  }
 	];
     ```
+	- Reduces the initial load time of the application by loading only the necessary modules at the start.
+	- Makes the application more scalable by allowing you to add more features without significantly impacting the initial load time.
+
+    
 79. ### What is host property in css?
     The :host pseudo-class selector is used to target styles in the element that hosts the component.
     
