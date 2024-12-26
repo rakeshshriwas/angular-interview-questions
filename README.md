@@ -782,11 +782,10 @@ Angular supports three types of view encapsulation: Emulated, Shadow DOM, and No
 
 	**None:** Disables view encapsulation, Styles defined in a component can affect the entire application.
 
-138. ### What is ng-content?
-     The ng-content directive in Angular is used for Content Projection. It allows you to pass content into a component from its parent component, enabling the creation of flexible and reusable components.
- helps to increase component reusability.
+275. ### What is ng-content and its purpose?
+     The ng-content is used to insert the content dynamically inside the component that helps to increase component reusability. 
 
-     ```html
+     ```javascript
 	<div class="card">
 	 <div class="card-header">
 	   <ng-content select="[header]"></ng-content>
