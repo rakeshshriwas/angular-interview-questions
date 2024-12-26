@@ -1069,8 +1069,6 @@
 
      **Note:** Remember to update the properties against the exact model structure.
 
-     **[⬆ Back to Top](#table-of-contents)**
-
 262. ### What is the purpose of FormBuilder?
      FormBuilder is used as syntactic sugar for easily creating instances of a FormControl, FormGroup, or FormArray. This is helpful to reduce the amount of boilerplate needed to build complex reactive forms. It is available as an injectable helper class of the `@angular/forms` package.
 
@@ -1118,8 +1116,6 @@
      | Visited | ng-touched | ng-untouched |
      | Value has changed | ng-dirty	 | ng-pristine |
      | Value is valid| 	ng-valid | ng-invalid |
-
-     **[⬆ Back to Top](#table-of-contents)**
 
 265. ### How do you reset the form?
      In a model-driven form, you can reset the form just by calling the function `reset()` on our form model.
@@ -1247,11 +1243,12 @@
 	
  	The syntax of HttpInterceptor interface looks like as below,
 	
-	     ```javascript
+	```javascript
 	     interface HttpInterceptor {
 	       intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
 	     }
-	     ```
+	```
+ 
 	     You can use interceptors by declaring a service class that implements the intercept() method of the HttpInterceptor interface.
 	
 	     ```javascript
@@ -1298,8 +1295,6 @@
      ],
      ```
      The interceptors will be called in the order in which they were provided. i.e, MyFirstInterceptor will be called first in the above interceptors configuration.
-
-     **[⬆ Back to Top](#table-of-contents)**
 
 176. ### How can I use interceptor for an entire application?
      You can use same instance of `HttpInterceptors` for the entire app by importing the `HttpClientModule` only in your AppModule, and add the interceptors to the root application injector.
