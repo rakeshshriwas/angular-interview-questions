@@ -141,8 +141,27 @@
 	- You are optimizing performance and can manage immutability or manually trigger updates when needed.
 	- Your components rely heavily on @Input() bindings for updates.
 
-79. ### What is standalone component?
-    A standalone component is a type of component which is not part of any Angular module. It provides a simplified way to build Angular applications.
+79. ### What is lazy loading?
+    Lazy loading in Angular is a design pattern and technique used to improve the performance of an application by loading modules and components only when they are needed. Instead of loading all modules at the start, lazy loading defers the loading 
+    of certain modules until they are required, reducing the initial load time and improving the user experience.
+
+    ```javascript
+	const routes: Routes = [
+	  {
+	    path: 'customers',
+	    loadChildren: () => import('./customers/customers.module').then(module => module.CustomersModule)
+	  },
+	  {
+	    path: 'orders',
+	    loadChildren: () => import('./orders/orders.module').then(module => module.OrdersModule)
+	  },
+	  {
+	    path: '',
+	    redirectTo: '',
+	    pathMatch: 'full'
+	  }
+	];
+    ```
 79. ### What is host property in css?
     The :host pseudo-class selector is used to target styles in the element that hosts the component.
     
