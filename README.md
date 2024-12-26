@@ -91,7 +91,55 @@
     The index.html file contains the root component selector (e.g., <app-root>), which Angular replaces with the application content during the bootstrap process.
 
 79. ### What is change dedication strategy in angular?
-    A standalone component is a type of component which is not part of any Angular module. It provides a simplified way to build Angular applications.
+    In Angular, change detection strategy determines how the framework tracks and updates the component's view in response to changes in data or inputs. Angular provides two primary change detection strategies
+
+    **1. Default Change Detection Strategy**
+
+	This is the default strategy for all components.
+	Angular checks the entire component tree starting from the root to ensure that all changes in the application are reflected in the view.
+
+	```javascript
+	 @Component({
+	  selector: 'app-example',
+	  templateUrl: './example.component.html',
+	  changeDetection: ChangeDetectionStrategy.Default
+	})
+	export class ExampleComponent {
+	  // Component logic here
+	}
+	```
+
+
+    **2. OnPush Change Detection Strategy**
+
+	Angular skips checking the component and its children unless:
+	- The component's @Input properties have changed.
+	- An event bound to the component is triggered.
+	- A manual trigger (ChangeDetectorRef) is used.
+	- Suitable for scenarios where the data flow is predictable and primarily driven by immutable inputs.
+
+	```javascript
+	 @Component({
+	  selector: 'app-example',
+	  templateUrl: './example.component.html',
+	  changeDetection: ChangeDetectionStrategy.OnPush
+	})
+	export class ExampleComponent {
+	  // Component logic here
+	}
+	```
+
+	**How to Choose Between Default and OnPush?**
+
+	**Use Default when:**
+	- Your application has small or medium complexity.
+	- You don't want to manage change detection explicitly.
+	- The performance is acceptable without extra optimizations.
+
+	**Use OnPush when:**
+	- Your application has large, complex component trees.
+	- You are optimizing performance and can manage immutability or manually trigger updates when needed.
+	- Your components rely heavily on @Input() bindings for updates.
 
 79. ### What is standalone component?
     A standalone component is a type of component which is not part of any Angular module. It provides a simplified way to build Angular applications.
