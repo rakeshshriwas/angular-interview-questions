@@ -790,6 +790,7 @@
 79. ### What is micro frontend
      A Micro Frontend in Angular is an architectural approach where a large application is split into smaller, independent frontend pieces (micro apps), which can be developed, deployed, and maintained separately. Each micro frontend is         
      responsible for a specific feature or module and works like its own mini application, but together, they form a larger application.
+    
      **Example:**
      Imagine an e-commerce website. The homepage, product page, and shopping cart could each be a separate micro frontend. Each one can be developed and deployed separately, and they work together as one large website. 
 
@@ -822,6 +823,85 @@
 
     **Yarn** is another package manager for JavaScript, designed as an alternative to NPM. It aims to address some of the performance and consistency issues found in NPM. Yarn provides features like faster installation, deterministic dependency resolution, and offline capability. 
 
-79. ### Why do we need compilation process?
-79. ### Why do we need compilation process?
+79. ### What is interceptors?
+    In Angular, interceptors are a powerful mechanism used to intercept and modify HTTP requests and responses globally. They allow you to customize or transform HTTP requests before they are sent to the server and responses before they are processed by the application. This is especially useful for tasks like adding authentication tokens, logging, or handling errors centrally.
+
+    **How Interceptors Works:** Interceptors are implemented by creating a service that implements the HttpInterceptor interface. They are registered as providers in the Angular module and automatically intercept requests.
+    **Common Use Cases:**
+	- Authentication: Add JWT tokens or API keys to requests.
+	- Logging: Log all outgoing requests and incoming responses for debugging.
+	- Error Handling: Handle global errors, such as unauthorized access (401) or server errors (500).
+	- Caching: Cache certain responses to reduce unnecessary server requests.
+
+79. ### ⁠How can handel error in angular
+    You can handle responses and errors using RxJS operators like map() and catchError().
+    
+    ```javascript
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class ApiService {
+	  private apiUrl = 'https://api.example.com/data'; // Replace with your API URL
+	  constructor(private http: HttpClient) { }
+	
+	  getData(): Observable<any> {
+	    return this.http.get<any>(this.apiUrl).pipe(
+	      catchError(this.handleError)
+	    );
+	  }
+	
+	  private handleError(error: any) {
+	    // Handle the error here (e.g., log it, show a user-friendly message, etc.)
+	    console.error('An error occurred:', error);
+	    return throwError(() => new Error('Something went wrong; please try again later.'));
+	  }
+	}
+    ```
+12. ### What is router outlet
+    In Angular, a router-outlet is a directive that acts as a placeholder in a component’s template. It’s used to dynamically load different components based on the current URL route. When the Angular Router matches a URL to a route, it dynamically loads the corresponding component into the <router-outlet> location within your application's layout.
+
+12. ### What is Angular router
+    Angular Router is an important feature of the Angular framework that helps you to build rich and interactive single-page applications (SPAs) with multiple views.
+    
+12. ### Route Guards in Angular
+    In Angular, guards are special classes used to control and manage access to different parts of an application. They decide whether a user can navigate to a particular route or perform certain actions based on specific conditions, like checking if the user is logged in or has the necessary permissions.
+
+**CanActivate:** Determines if a route can be activated and allows navigation based on certain conditions
+
+```javascript
+@Injectable({
+  providedIn: 'root',
+})
+export class ActivateGuard implements CanActivate {
+  public isAllowed: boolean = false;
+
+  constructor(private router: Router) {}
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.isAllowed) {
+      return true;
+    } else {
+      alert('No Permission');
+      this.router.navigate(['home', 'home-settings', 1], {
+        queryParams: { isActive: true },
+      });
+      return false;
+    }
+  }
+}
+```
+**CanActivateChild:** Similar to CanActivate but controls the activation of child routes.
+**CanDeactivate:** Checks if a route can be deactivated, often used to confirm navigation away from a route.
+**CanLoad:** Prevents a module from being loaded lazily until certain conditions are met.
+
+79. ### ⁠What are route parameter
+    Route parameters are used to pass dynamic values in the URL of a route. They allow you to define variable segments in the route path, which can be accessed and used by components and services. Path parameters are represented by a colon (":") followed by the parameter name.
+
+    EX: Params, Query params, Fragments(#)
+    { path: 'users/:id', component: UserComponent }
+    
+79. ### What is authentication and authorization?
+
+    In simple terms, authentication is the process of verifying who a user is, while authorization is the process of verifying what they have access to. Comparing these processes to a real-world example, when you go through security in an airport, you show your ID to authenticate your identity.
+
+    In summary, authentication confirms the user's identity, while authorization determines their level of access within the system.
 
