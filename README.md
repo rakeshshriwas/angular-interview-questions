@@ -1452,32 +1452,33 @@
 12. ### Route Guards in Angular
     In Angular, guards are special classes used to control and manage access to different parts of an application. They decide whether a user can navigate to a particular route or perform certain actions based on specific conditions, like checking if the user is logged in or has the necessary permissions.
 
-**CanActivate:** Determines if a route can be activated and allows navigation based on certain conditions
-
-```javascript
-@Injectable({
-  providedIn: 'root',
-})
-export class ActivateGuard implements CanActivate {
-  public isAllowed: boolean = false;
-
-  constructor(private router: Router) {}
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.isAllowed) {
-      return true;
-    } else {
-      alert('No Permission');
-      this.router.navigate(['home', 'home-settings', 1], {
-        queryParams: { isActive: true },
-      });
-      return false;
-    }
-  }
-}
-```
-**CanActivateChild:** Similar to CanActivate but controls the activation of child routes.
-**CanDeactivate:** Checks if a route can be deactivated, often used to confirm navigation away from a route.
-**CanLoad:** Prevents a module from being loaded lazily until certain conditions are met.
+    **CanActivate:** Determines if a route can be activated and allows navigation based on certain conditions
+	
+	```javascript
+	@Injectable({
+	  providedIn: 'root',
+	})
+	export class ActivateGuard implements CanActivate {
+	  public isAllowed: boolean = false;
+	
+	  constructor(private router: Router) {}
+	  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+	    if (this.isAllowed) {
+	      return true;
+	    } else {
+	      alert('No Permission');
+	      this.router.navigate(['home', 'home-settings', 1], {
+	        queryParams: { isActive: true },
+	      });
+	      return false;
+	    }
+	  }
+	}
+	```
+ 
+   **CanActivateChild:** Similar to CanActivate but controls the activation of child routes.
+   **CanDeactivate:** Checks if a route can be deactivated, often used to confirm navigation away from a route.
+   **CanLoad:** Prevents a module from being loaded lazily until certain conditions are met.
 
 282. ### What are the Route Parameters? Could you explain each of them?.
       Route parameters are used to pass dynamic values in the URL of a route. They allow you to define variable segments in the route path, which can be accessed and used by components and services. Path parameters are represented by a colon (":") followed by the parameter name.
@@ -1569,16 +1570,13 @@ export class ActivateGuard implements CanActivate {
      export class MyService {
      }
      ```
-     **[⬆ Back to Top](#table-of-contents)**
-
 233. ### What is the recommendation for provider scope?
      You should always provide your service in the root injector unless there is a case where you want the service to be available only if you import a particular @NgModule.
-
-     **[⬆ Back to Top](#table-of-contents)**
 
 234. ### How do you restrict provider scope to a module?
      It is possible to restrict service provider scope to a specific module instead making available to entire application. There are two possible ways to do it.
      1. **Using providedIn in service:**
+        
          ```js
          import { Injectable } from '@angular/core';
          import { SomeModule } from './some.module';
@@ -1589,7 +1587,9 @@ export class ActivateGuard implements CanActivate {
          export class SomeService {
          }
          ```
-     2. **Declare provider for the service in module:**
+         
+     3. **Declare provider for the service in module:**
+        
          ```js
          import { NgModule } from '@angular/core';
 
