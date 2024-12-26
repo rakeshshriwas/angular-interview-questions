@@ -786,7 +786,7 @@ Angular supports three types of view encapsulation: Emulated, Shadow DOM, and No
      The ng-content directive in Angular is used for Content Projection. It allows you to pass content into a component from its parent component, enabling the creation of flexible and reusable components.
  helps to increase component reusability.
 
-	```javascript
+     ```html
 	<div class="card">
 	 <div class="card-header">
 	   <ng-content select="[header]"></ng-content>
@@ -800,7 +800,7 @@ Angular supports three types of view encapsulation: Emulated, Shadow DOM, and No
 	 <h2 header>My Card Header</h2>
 	 <p>This is the body content of my card.</p>
 	</my-card>
-	```
+      ```
  
      
 256. ### What are reactive forms?
