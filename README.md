@@ -782,10 +782,11 @@ Angular supports three types of view encapsulation: Emulated, Shadow DOM, and No
 
 	**None:** Disables view encapsulation, Styles defined in a component can affect the entire application.
 
-275. ### What is ng-content and its purpose?
+275. ### What is ng-content and its purpose.
+     
      The ng-content is used to insert the content dynamically inside the component that helps to increase component reusability. 
 
-     ```javascript
+     ```html
 	<div class="card">
 	 <div class="card-header">
 	   <ng-content select="[header]"></ng-content>
@@ -800,7 +801,6 @@ Angular supports three types of view encapsulation: Emulated, Shadow DOM, and No
 	 <p>This is the body content of my card.</p>
 	</my-card>
       ```
- 
      
 256. ### What are reactive forms?
      Reactive forms is a model-driven approach for creating forms in a reactive style(form inputs changes over time). These are built around observable streams, where form inputs and values are provided as streams of input values. Let's follow the below steps to create reactive forms,
