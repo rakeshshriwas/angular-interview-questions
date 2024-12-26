@@ -30,15 +30,21 @@
    **There are eight lifecycle hooks in Angular:**
 
 	1. **ngOnChanges:** This lifecycle hook is executed whenever the component's input properties change
-	2. **ngOnInit:** This lifecycle hook is executed after the component's constructor method and is a good place to perform initial setup for the component.
-	3. **ngDoCheck:** This lifecycle hook is executed during every change detection cycle and is a good place to perform custom change detection.
-	4. **ngAfterContentInit:** This lifecycle hook is executed after the component's content has been initialized and is a good place to perform additional setup for the component's content.
-	5. **ngAfterContentChecked:** This lifecycle hook is executed after the component's content has been checked and is a good place to perform additional operations based on the component's content.
-	6. **ngAfterViewInit:** This lifecycle hook is executed after the component's view has been initialized and is a good place to perform additional setup for the component's view.
-	7. **ngAfterViewChecked:** This lifecycle hook is executed after the component's view has been checked and is a good place to perform additional operations based on the component's view.
-	8. **ngOnDestroy:** This lifecycle hook is executed just before the component is destroyed and is a good place to perform cleanup operations for the component.
     
-
+	3. **ngOnInit:** This lifecycle hook is executed after the component's constructor method and is a good place to perform initial setup for the component.
+	
+ 	4. **ngDoCheck:** This lifecycle hook is executed during every change detection cycle and is a good place to perform custom change detection.
+	
+  	5. **ngAfterContentInit:** This lifecycle hook is executed after the component's content has been initialized and is a good place to perform additional setup for the component's content.
+	
+ 	6. **ngAfterContentChecked:** This lifecycle hook is executed after the component's content has been checked and is a good place to perform additional operations based on the component's content.
+	
+ 	7. **ngAfterViewInit:** This lifecycle hook is executed after the component's view has been initialized and is a good place to perform additional setup for the component's view.
+	
+ 	8. **ngAfterViewChecked:** This lifecycle hook is executed after the component's view has been checked and is a good place to perform additional operations based on the component's view.
+	
+ 	9. **ngOnDestroy:** This lifecycle hook is executed just before the component is destroyed and is a good place to perform cleanup operations for the component.
+    
 79. ### What Is dev dependencies vs dependencies
     The main difference between dependencies and devDependencies in Angular is that dependencies are required for an application to run in production, while devDependencies are only needed for development and testing.
 
@@ -48,7 +54,6 @@
     **DevDependencies**:
     Packages that are only needed for local development and testing. For example, a testing framework like Jest, or other utilities like ESLint.
 
-
 79. ### What is angular.json
     angular.json is a configuration file in Angular that provides project-level settings and build configurations for an Angular application. It defines how your Angular app is structured, what libraries are used, and how to run, build, or test the app.
 
@@ -56,7 +61,404 @@
     **package.json**: This file is primarily used for managing and documenting metadata about the project, including its name, version, author, dependencies, scripts, and other configuration details. It acts as a manifest for the project.
     
     **package-lock.json**: This file is generated and updated automatically by npm when installing or updating packages. It is used to lock the exact versions of dependencies installed in the project. It ensures that the same versions of packages are installed consistently across different environments.
+
+81. ### What is a template?
+    A template is a HTML view where you can display data by binding controls to properties of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.
+
+   	**Using inline template with template syntax**
     
+	    ```javascript
+	    import { Component } from '@angular/core';
+	
+	    @Component ({
+	       selector: 'my-app',
+	       template: '
+	          <div>
+	             <h1>{{title}}</h1>
+	             <div>Learn Angular</div>
+	          </div>
+	       '
+	    })
+	
+	    export class AppComponent {
+	       title: string = 'Hello World';
+	    }
+	    ```
+    
+       **Using separate template file such as app.component.html**
+    
+	    ```javascript
+	    import { Component } from '@angular/core';
+	
+	    @Component ({
+	       selector: 'my-app',
+	       templateUrl: 'app/app.component.html'
+	    })
+	
+	    export class AppComponent {
+	       title: string = 'Hello World';
+	    }
+	    ```
+
+81. ### What is a module?
+	Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application. Lets take an example of app.module.ts root module declared with @NgModule decorator as below,
+
+	   ```javascript
+		import { NgModule }      from '@angular/core';
+		import { BrowserModule } from '@angular/platform-browser';
+		import { AppComponent }  from './app.component';
+		
+		@NgModule ({
+		   imports:      [ BrowserModule ],
+		   declarations: [ AppComponent ],
+		   bootstrap:    [ AppComponent ],
+		   providers: []
+		})
+		export class AppModule { }
+	   ```
+225. ### What are feature modules?
+     Feature modules are NgModules, which are used for the purpose of organizing code. The feature module can be created with Angular CLI using the below command in the root directory,
+     ```javascript
+     ng generate module MyCustomFeature //
+     ```
+     Angular CLI creates a folder called `my-custom-feature` with a file inside called `my-custom-feature.module.ts` with the following contents
+     ```javascript
+     import { NgModule } from '@angular/core';
+     import { CommonModule } from '@angular/common';
+
+     @NgModule({
+       imports: [
+         CommonModule
+       ],
+       declarations: []
+     })
+     export class MyCustomFeature { }
+     ```
+238. ### What is a shared module?
+     The Shared Module is the module in which you put commonly used directives, pipes, and components into one module that is shared(import it) throughout the application.
+
+     For example, the below shared module imports CommonModule, FormsModule for common directives and components, pipes and directives based on the need,
+     ```js
+     import { CommonModule } from '@angular/common';
+     import { NgModule } from '@angular/core';
+     import { FormsModule } from '@angular/forms';
+     import { UserComponent } from './user.component';
+     import { NewUserDirective } from './new-user.directive';
+     import { OrdersPipe } from './orders.pipe';
+
+     @NgModule({
+      imports:      [ CommonModule ],
+      declarations: [ UserComponent, NewUserDirective, OrdersPipe ],
+      exports:      [ UserComponent, NewUserDirective, OrdersPipe,
+                      CommonModule, FormsModule ]
+     })
+     export class SharedModule { }
+     ```
+
+226. ### What are the imported modules in CLI generated feature modules?
+     In the CLI generated feature module, there are two JavaScript import statements at the top of the file
+     1. **NgModule:** InOrder to use the `@NgModule` decorator
+     2. **CommonModule:** It provides many common directives such as `ngIf` and `ngFor`.
+
+34. ### What is a bootstrapping module?
+    Every application has at least one Angular module, the root module that you bootstrap to launch the application is called as bootstrapping module. It is commonly known as `AppModule`. The default structure of `AppModule` generated by AngularCLI would be as follows:
+	
+	```javascript
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgModule } from '@angular/core';
+        import { FormsModule } from '@angular/forms';
+        import { HttpClientModule } from '@angular/common/http';
+
+        import { AppComponent } from './app.component';
+
+        /* the AppModule class with the @NgModule decorator */
+        @NgModule({
+          declarations: [
+            AppComponent
+          ],
+          imports: [
+            BrowserModule,
+            FormsModule,
+            HttpClientModule
+          ],
+          providers: [],
+          bootstrap: [AppComponent]
+        })
+        export class AppModule { }
+	```
+
+81. ### What is a data binding?
+    Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data. There are four forms of data binding(divided as 3 categories) which differ in the way the data is flowing.
+    
+    1. **From the Component to the DOM:**
+
+        **Interpolation:** {{ value }}: Adds the value of a property from the component
+        ```html
+        <li>Name: {{ user.name }}</li>
+        <li>Address: {{ user.address }}</li>
+        ```
+        **Property binding:** [property]=”value”: The value is passed from the component to the specified property or simple HTML attribute
+        ```html
+        <input type="email" [value]="user.email">
+        ```
+    2. **From the DOM to the Component:**
+        **Event binding: (event)=”function”:** When a specific DOM event happens (eg.: click, change, keyup), call the specified method in the component
+        ```html
+        <button (click)="logout()"></button>
+        ```
+    3. **Two-way binding:**
+        **Two-way data binding:** [(ngModel)]=”value”: Two-way data binding allows to have the data flow both ways. For example, in the below code snippet, both the email DOM input and component email property are in sync
+        ```html
+        <input type="email" [(ngModel)]="user.email">
+        ```
+13. ### What is metadata?
+    Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators
+    1. **Class decorators**, e.g. @Component and @NgModule
+        ```typescript
+        import { NgModule, Component } from '@angular/core';
+
+        @Component({
+          selector: 'my-component',
+          template: '<div>Class decorator</div>',
+        })
+        export class MyComponent {
+          constructor() {
+            console.log('Hey I am a component!');
+          }
+        }
+
+        @NgModule({
+          imports: [],
+          declarations: [],
+        })
+        export class MyModule {
+          constructor() {
+            console.log('Hey I am a module!');
+          }
+        }
+        ```
+    2. **Property decorators** Used for properties inside classes, e.g. @Input and @Output
+        ```typescript
+        import { Component, Input } from '@angular/core';
+
+        @Component({
+            selector: 'my-component',
+            template: '<div>Property decorator</div>'
+        })
+
+        export class MyComponent {
+            @Input()
+            title: string;
+        }
+        ```
+    3. **Method decorators** Used for methods inside classes, e.g. @HostListener
+        ```typescript
+        import { Component, HostListener } from '@angular/core';
+
+        @Component({
+            selector: 'my-component',
+            template: '<div>Method decorator</div>'
+        })
+        export class MyComponent {
+            @HostListener('click', ['$event'])
+            onHostClick(event: Event) {
+                // clicked, `event` available
+            }
+        }
+        ```
+    4. **Parameter decorators** Used for parameters inside class constructors, e.g. @Inject, @Optional
+        ```typescript
+        import { Component, Inject } from '@angular/core';
+        import { MyService } from './my-service';
+
+        @Component({
+            selector: 'my-component',
+            template: '<div>Parameter decorator</div>'
+        })
+        export class MyComponent {
+            constructor(@Inject(MyService) myService) {
+                console.log(myService); // MyService
+            }
+        }
+        ```
+
+15. ### What is the difference between constructor and ngOnInit?
+    The **Constructor** is a default method of the class that is executed when the class is instantiated and ensures proper initialisation of fields in the class and its subclasses. Angular, or better Dependency Injector (DI), analyses the constructor parameters and when it creates a new instance by calling new MyClass() it tries to find providers that match the types of the constructor parameters, resolves them and passes them to the constructor.  
+    **ngOnInit** is a life cycle hook called by Angular to indicate that Angular is done creating the component.  
+    Mostly we use ngOnInit for all the initialization/declaration and avoid stuff to work in the constructor. The constructor should only be used to initialize class members but shouldn't do actual "work".
+    So you should use constructor() to setup Dependency Injection and not much else. ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
+
+    ```typescript
+    export class App implements OnInit{
+      constructor(private myService: MyService){
+         //called first time before the ngOnInit()
+      }
+
+      ngOnInit(){
+         //called after the constructor and called  after the first ngOnChanges()
+         //e.g. http call...
+      }
+    }
+    ```
+
+99. ### What is the purpose of common module?
+    The commonly-needed services, pipes, and directives provided by @angular/common module. Apart from these HttpClientModule is available under @angular/common/http.
+
+108. ### What is a service worker and its role in Angular?
+     A service worker is a script that runs in the web browser and manages caching for an application. Starting from 5.0.0 version, Angular ships with a service worker implementation. Angular service worker is designed to optimize the end user experience of using an application over a slow or unreliable network connection, while also minimizing the risks of serving outdated content.
+
+16. ### What is a service?
+    A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
+
+    Let's create a repoService which can be used across components,
+
+    ```typescript
+    import { Injectable } from '@angular/core';
+    import { Http } from '@angular/http';
+
+    @Injectable({ // The Injectable decorator is required for dependency injection to work
+      // providedIn option registers the service with a specific NgModule
+      providedIn: 'root',  // This declares the service with the root app (AppModule)
+    })
+    export class RepoService{
+      constructor(private http: Http){
+      }
+
+      fetchAll(){
+        return this.http.get('https://api.github.com/repositories');
+      }
+    }
+    ```
+    The above service uses Http service as a dependency.
+
+140. ### How do you pass headers for HTTP client?
+     You can directly pass object map for http client or create HttpHeaders class to supply the headers.
+
+     ```javascript
+     constructor(private _http: HttpClient) {}
+     this._http.get('someUrl',{
+        headers: {'header1':'value1','header2':'value2'}
+     });
+
+     (or)
+     let headers = new HttpHeaders().set('header1', headerValue1); // create header object
+     headers = headers.append('header2', headerValue2); // add a new header, creating a new object
+     headers = headers.append('header3', headerValue3); // add another header
+
+     let params = new HttpParams().set('param1', value1); // create params object
+     params = params.append('param2', value2); // add a new param, creating a new object
+     params = params.append('param3', value3); // add another param
+
+     return this._http.get<any[]>('someUrl', { headers: headers, params: params })
+     ```
+
+
+18. ### What is dependency injection in Angular?
+    Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
+
+23. ### What happens if you use script tag inside template?
+
+    Angular recognizes the value as unsafe and automatically sanitizes it, which removes the `script` tag but keeps safe content such as the text content of the `script` tag. This way it eliminates the risk of script injection attacks. If you still use it then it will be ignored and a warning appears in the browser console.
+
+    Let's take an example of innerHtml property binding which causes XSS vulnerability,
+    ```typescript
+    export class InnerHtmlBindingComponent {
+      // For example, a user/attacker-controlled value from a URL.
+      htmlSnippet = 'Template <script>alert("0wned")</script> <b>Syntax</b>';
+    }
+    ```
+107. ### How to inject the dynamic script in angular?
+     Using DomSanitizer we can inject the dynamic Html,Style,Script,Url.
+
+     ```
+     import { Component, OnInit } from '@angular/core';
+     import { DomSanitizer } from '@angular/platform-browser';
+     @Component({
+        selector: 'my-app',
+        template: `
+            <div [innerHtml]="htmlSnippet"></div>
+        `,
+     })
+     export class App {
+            constructor(protected sanitizer: DomSanitizer) {}
+            htmlSnippet: string = this.sanitizer.bypassSecurityTrustScript("<script>safeCode()</script>");
+        }
+     ```
+     
+24. ### What is interpolation?
+
+    Interpolation is a special syntax that Angular converts into property binding. It’s a convenient alternative to property binding. It is represented by double curly braces({{}}). The text between the braces is often the name of a component property. Angular replaces that name with the string value of the corresponding component property.
+
+    Let's take an example,
+    ```html
+    <h3>
+      {{title}}
+      <img src="{{url}}" style="height:30px">
+    </h3>
+    ```
+    In the example above, Angular evaluates the title and url properties and fills in the blanks, first displaying a bold application title and then a URL.
+
+36. ### What is HttpClient and its benefits?
+    Most of the Front-end applications communicate with backend services over `HTTP` protocol using either `XMLHttpRequest` interface or the `fetch()` API. Angular provides a simplified client HTTP API known as `HttpClient` which is based on top of `XMLHttpRequest` interface. This client is available from `@angular/common/http` package.
+    You can import in your root module as below:
+
+    ```javascript
+    import { HttpClientModule } from '@angular/common/http';
+    ```
+
+    The major advantages of HttpClient can be listed as below,
+    1. Contains testability features
+    2. Provides typed request and response objects
+    3. Intercept request and response
+    4. Supports Observable APIs
+    5. Supports streamlined error handling
+
+37. ### Explain on how to use `HttpClient` with an example?
+    Below are the steps need to be followed for the usage of `HttpClient`.
+    1. Import `HttpClient` into root module:
+        ```javascript
+        import { HttpClientModule } from '@angular/common/http';
+        @NgModule({
+          imports: [
+            BrowserModule,
+            // import HttpClientModule after BrowserModule.
+            HttpClientModule,
+          ],
+          ......
+          })
+         export class AppModule {}
+        ```
+    2. Inject the `HttpClient` into the application:
+        Let's create a userProfileService(`userprofile.service.ts`) as an example. It also defines get method of `HttpClient`:
+        ```javascript
+        import { Injectable } from '@angular/core';
+        import { HttpClient } from '@angular/common/http';
+
+        const userProfileUrl: string = 'assets/data/profile.json';
+
+        @Injectable()
+        export class UserProfileService {
+          constructor(private http: HttpClient) { }
+
+          getUserProfile() {
+            return this.http.get(this.userProfileUrl);
+          }
+        }
+        ```
+    3. Create a component for subscribing service:
+        Let's create a component called UserProfileComponent(`userprofile.component.ts`), which injects `UserProfileService` and invokes the service method:
+        ```javascript
+        fetchUserProfile() {
+          this.userProfileService.getUserProfile()
+            .subscribe((data: User) => this.user = {
+                id: data['userId'],
+                name: data['firstName'],
+                city:  data['city']
+            });
+        }
+        ```
+    Since the above service method returns an Observable which needs to be subscribed in the component.
+
 81. ### What are components?
 	Components are the most basic UI building block of an Angular app, which form a tree of Angular components. These components are a subset of directives. Unlike directives, components always have a template, and only one component can be instantiated per element in a template. Let's see a simple example of Angular component.
 
@@ -75,6 +477,8 @@
 	   title: string = 'Welcome to Angular world';
 	}
 	```
+59. ### What are dynamic components?
+    Dynamic components are the components in which the component's location in the application is not defined at build time i.e. they are not used in any angular template. Instead, the component is instantiated and placed in the application at runtime.
 
 79. ### What is standalone component?
     A standalone component is a type of component which is not part of any Angular module. It provides a simplified way to build Angular applications.
@@ -146,8 +550,6 @@
 	  // Component logic here
 	}
 	```
-
-
     **2. OnPush Change Detection Strategy**
 
 	Angular skips checking the component and its children unless:
@@ -178,31 +580,6 @@
 	- Your application has large, complex component trees.
 	- You are optimizing performance and can manage immutability or manually trigger updates when needed.
 	- Your components rely heavily on @Input() bindings for updates.
-
-79. ### What is lazy loading?
-    Lazy loading in Angular is a design pattern and technique used to improve the performance of an application by loading modules and components only when they are needed. Instead of loading all modules at the start, lazy loading defers the loading 
-    of certain modules until they are required, reducing the initial load time and improving the user experience.
-
-    ```javascript
-	const routes: Routes = [
-	  {
-	    path: 'customers',
-	    loadChildren: () => import('./customers/customers.module').then(module => module.CustomersModule)
-	  },
-	  {
-	    path: 'orders',
-	    loadChildren: () => import('./orders/orders.module').then(module => module.OrdersModule)
-	  },
-	  {
-	    path: '',
-	    redirectTo: '',
-	    pathMatch: 'full'
-	  }
-	];
-    ```
-	- Reduces the initial load time of the application by loading only the necessary modules at the start.
-	- Makes the application more scalable by allowing you to add more features without significantly impacting the initial load time.
-
     
 79. ### What is host property in css?
     The :host pseudo-class selector is used to target styles in the element that hosts the component.
@@ -295,6 +672,24 @@
       }
     }
    ```
+202. ### What is slice pipe?
+     The slice pipe is used to create a new Array or String containing a subset (slice) of the elements. The syntax looks like as below,
+     ```javascript
+     {{ value_expression | slice : start [ : end ] }}
+     ```
+     For example, you can provide 'hello' list based on a greeting array,
+     ```javascript
+     @Component({
+       selector: 'list-pipe',
+       template: `<ul>
+         <li *ngFor="let i of greeting | slice:0:5">{{i}}</li>
+       </ul>`
+     })
+     export class PipeListComponent {
+       greeting: string[] = ['h', 'e', 'l', 'l', 'o', 'm','o', 'r', 'n', 'i', 'n', 'g'];
+     }
+     ```
+
 7. ### What is directives in angular
    In angular, directives are classes that add behaviour to an existing DOM element or an existing component instance in Angular applications.
 
@@ -361,6 +756,23 @@
 
 9. ### How does angular finds components, directives and pipes?
     The Angular compiler finds a component or directive in a template when it can match the selector of that component or directive in that template. Whereas it finds a pipe if the pipe's name appears within the pipe syntax of the template HTML.
+
+138. ### How do you select an element with in a component template?
+     You can use `@ViewChild` directive to access elements in the view directly. Let's take input element with a reference,
+
+     ```html
+     <input #uname>
+     ```
+     and define view child directive and access it in ngAfterViewInit lifecycle hook
+
+     ```javascript
+     @ViewChild('uname') input;
+
+     ngAfterViewInit() {
+       console.log(this.input.nativeElement.value);
+     }
+     ```
+
 256. ### What are reactive forms?
      Reactive forms is a model-driven approach for creating forms in a reactive style(form inputs changes over time). These are built around observable streams, where form inputs and values are provided as streams of input values. Let's follow the below steps to create reactive forms,
      1. Register the reactive forms module which declares reactive-form directives in your app
@@ -832,6 +1244,95 @@
 	- Logging: Log all outgoing requests and incoming responses for debugging.
 	- Error Handling: Handle global errors, such as unauthorized access (401) or server errors (500).
 	- Caching: Cache certain responses to reduce unnecessary server requests.
+	
+ 	The syntax of HttpInterceptor interface looks like as below,
+	
+	     ```javascript
+	     interface HttpInterceptor {
+	       intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+	     }
+	     ```
+	     You can use interceptors by declaring a service class that implements the intercept() method of the HttpInterceptor interface.
+	
+	     ```javascript
+	     @Injectable()
+	     export class MyInterceptor implements HttpInterceptor {
+	         constructor() {}
+	         intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+	             ...
+	         }
+	     }
+	     ```
+	     After that you can use it in your module,
+	
+	     ```javascript
+	     @NgModule({
+	         ...
+	         providers: [
+	             {
+	                 provide: HTTP_INTERCEPTORS,
+	                 useClass: MyInterceptor,
+	                 multi: true
+	             }
+	         ]
+	         ...
+	     })
+	     export class AppModule {}
+	     ```
+174. ### What are the applications of HTTP interceptors?
+     The HTTP Interceptors can be used for different variety of tasks,
+
+     1. Authentication
+     2. Logging
+     3. Caching
+     4. Fake backend
+     5. URL transformation
+     6. Modifying headers
+
+175. ### Is multiple interceptors supported in Angular?
+     Yes, Angular supports multiple interceptors at a time. You could define multiple interceptors in providers property:
+     ```javascript
+     providers: [
+       { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true },
+       { provide: HTTP_INTERCEPTORS, useClass: MySecondInterceptor, multi: true }
+     ],
+     ```
+     The interceptors will be called in the order in which they were provided. i.e, MyFirstInterceptor will be called first in the above interceptors configuration.
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+176. ### How can I use interceptor for an entire application?
+     You can use same instance of `HttpInterceptors` for the entire app by importing the `HttpClientModule` only in your AppModule, and add the interceptors to the root application injector.
+     For example, let's define a class that is injectable in root application.
+      ```javascript
+      @Injectable()
+      export class MyInterceptor implements HttpInterceptor {
+        intercept(
+          req: HttpRequest<any>,
+          next: HttpHandler
+        ): Observable<HttpEvent<any>> {
+
+          return next.handle(req).do(event => {
+            if (event instanceof HttpResponse) {
+                 // Code goes here
+            }
+          });
+
+        }
+      }
+      ```
+     After that import HttpClientModule in AppModule
+     ```javascript
+     @NgModule({
+       declarations: [AppComponent],
+       imports: [BrowserModule, HttpClientModule],
+       providers: [
+         { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
+       ],
+       bootstrap: [AppComponent]
+     })
+     export class AppModule {}
+     ```
 
 79. ### ⁠How can handel error in angular
     You can handle responses and errors using RxJS operators like map() and catchError().
@@ -857,12 +1358,97 @@
 	  }
 	}
     ```
+
+63. ### What is Angular Router?
+    Angular Router is a mechanism in which navigation happens from one view to the next as users perform application tasks. It borrows the concepts or model of browser's application navigation. It enables developers to build Single Page Applications with multiple views and allow navigation between these views.
+    
 12. ### What is router outlet
     In Angular, a router-outlet is a directive that acts as a placeholder in a component’s template. It’s used to dynamically load different components based on the current URL route. When the Angular Router matches a URL to a route, it dynamically loads the corresponding component into the <router-outlet> location within your application's layout.
 
 12. ### What is Angular router
     Angular Router is an important feature of the Angular framework that helps you to build rich and interactive single-page applications (SPAs) with multiple views.
+
+67. ### What are router links?
+    The RouterLink is a directive on the anchor tags give the router control over those elements. Since the navigation paths are fixed, you can assign string values to router-link directive as below,
+
+    ```html
+    <h1>Angular Router</h1>
+    <nav>
+      <a routerLink="/todosList" >List of todos</a>
+      <a routerLink="/completed" >Completed todos</a>
+    </nav>
+    <router-outlet></router-outlet>
+    ```
+
+68. ### What are active router links?
+    RouterLinkActive is a directive that toggles css classes for active RouterLink bindings based on the current RouterState. i.e, The Router will add CSS classes when this link is active and remove when the link is inactive. For example, you can add them to RouterLinks as below.
+
+    ```html
+    <h1>Angular Router</h1>
+    <nav>
+      <a routerLink="/todosList" routerLinkActive="active">List of todos</a>
+      <a routerLink="/completed" routerLinkActive="active">Completed todos</a>
+    </nav>
+    <router-outlet></router-outlet>
+    ```
     
+71. ### What is activated route?
+    ActivatedRoute contains the information about a route associated with a component loaded in an outlet. It can also be used to traverse the router state tree. The ActivatedRoute will be injected as a router service to access the information. In the below example, you can access route path and parameters,
+
+    ```javascript
+    @Component({...})
+    class MyComponent {
+      constructor(route: ActivatedRoute) {
+        const id: Observable<string> = route.params.pipe(map(p => p.id));
+        const url: Observable<string> = route.url.pipe(map(segments => segments.join('')));
+        // route.data includes both `data` and `resolve`
+        const user = route.data.pipe(map(d => d.user));
+      }
+    }
+    ```
+
+72. ### How do you define routes?
+     A router must be configured with a list of route definitions. You configures the router with routes via the `RouterModule.forRoot()` method, and adds the result to the AppModule's `imports` array.
+
+    ```javascript
+     const appRoutes: Routes = [
+      { path: 'todo/:id',      component: TodoDetailComponent },
+      {
+        path: 'todos',
+        component: TodosListComponent,
+        data: { title: 'Todos List' }
+      },
+      { path: '',
+        redirectTo: '/todos',
+        pathMatch: 'full'
+      },
+      { path: '**', component: PageNotFoundComponent }
+    ];
+
+    @NgModule({
+      imports: [
+        RouterModule.forRoot(
+          appRoutes,
+          { enableTracing: true } // <-- debugging purposes only
+        )
+        // other imports here
+      ],
+      ...
+    })
+    export class AppModule { }
+    ```
+
+73. ### What is the purpose of Wildcard route?
+    If the URL doesn't match any predefined routes then it causes the router to throw an error and crash the app. In this case, you can use wildcard route. A wildcard route has a path consisting of two asterisks to match every URL.
+
+    For example, you can define PageNotFoundComponent for wildcard route as below
+    ```javascript
+    { path: '**', component: PageNotFoundComponent }
+    ```
+
+74. ### Do I need a Routing Module always?
+    No, the Routing Module is a design choice. You can skip routing Module (for example, AppRoutingModule) when the configuration is simple and merge the routing configuration directly into the companion module (for example, AppModule). But it is recommended when the configuration is complex and includes specialized guard and resolver services.
+
 12. ### Route Guards in Angular
     In Angular, guards are special classes used to control and manage access to different parts of an application. They decide whether a user can navigate to a particular route or perform certain actions based on specific conditions, like checking if the user is logged in or has the necessary permissions.
 
@@ -893,11 +1479,60 @@ export class ActivateGuard implements CanActivate {
 **CanDeactivate:** Checks if a route can be deactivated, often used to confirm navigation away from a route.
 **CanLoad:** Prevents a module from being loaded lazily until certain conditions are met.
 
-79. ### ⁠What are route parameter
-    Route parameters are used to pass dynamic values in the URL of a route. They allow you to define variable segments in the route path, which can be accessed and used by components and services. Path parameters are represented by a colon (":") followed by the parameter name.
+282. ### What are the Route Parameters? Could you explain each of them?.
+      Route parameters are used to pass dynamic values in the URL of a route. They allow you to define variable segments in the route path, which can be accessed and used by components and services. Path parameters are represented by a colon (":") followed by the parameter name.
 
-    EX: Params, Query params, Fragments(#)
-    { path: 'users/:id', component: UserComponent }
+      There are three types of route parameters in Angular:
+
+      **Path parameters:** Path parameters are used to define dynamic segments in the URL path. They are specified as part of the route's path and are extracted from the actual URL when navigating to that route. Path parameters are represented by a colon (":") followed by the parameter name. For example:
+
+      ```typescript
+      { path: 'users/:id', component: UserComponent }
+      ```
+
+      In this example, ":id" is the path parameter. When navigating to a URL like "/users/123", the value "123" will be extracted and can be accessed in the UserComponent.
+
+      **Query parameters:** Query parameters are used to pass additional information in the URL as key-value pairs. They are appended to the URL after a question mark ("?") and can be accessed by components and services. Query parameters are not part of the route path, but they provide additional data to the route. For example:
+
+      ```typescript
+      { path: 'search', component: SearchComponent }
+      ```
+
+      In this example, a URL like "/search?query=angular" contains a query parameter "query" with the value "angular". The SearchComponent can retrieve the value of the query parameter and use it for searching.
+
+      **Optional parameters:** Optional parameters are used when you want to make a route parameter optional. They are represented by placing a question mark ("?") after the parameter name. Optional parameters can be useful when you have routes with varying parameters. For example:
+
+      ```typescript
+      { path: 'products/:id/:category?', component: ProductComponent }
+      ```
+
+      In this example, the ":category" parameter is optional. The ProductComponent can be accessed with URLs like "/products/123" or "/products/123/electronics". If the ":category" parameter is present in the URL, it will be available in the component, otherwise, it will be undefined.
+
+      Route parameters provide a flexible way to handle dynamic data in your Angular application. They allow you to create routes that can be easily customized and provide a seamless user experience by reflecting the current state of the application in the URL.
+
+79. ### What is lazy loading?
+    Lazy loading in Angular is a design pattern and technique used to improve the performance of an application by loading modules and components only when they are needed. Instead of loading all modules at the start, lazy loading defers the loading 
+    of certain modules until they are required, reducing the initial load time and improving the user experience.
+
+    ```javascript
+	const routes: Routes = [
+	  {
+	    path: 'customers',
+	    loadChildren: () => import('./customers/customers.module').then(module => module.CustomersModule)
+	  },
+	  {
+	    path: 'orders',
+	    loadChildren: () => import('./orders/orders.module').then(module => module.OrdersModule)
+	  },
+	  {
+	    path: '',
+	    redirectTo: '',
+	    pathMatch: 'full'
+	  }
+	];
+    ```
+	- Reduces the initial load time of the application by loading only the necessary modules at the start.
+	- Makes the application more scalable by allowing you to add more features without significantly impacting the initial load time.
     
 79. ### What is authentication and authorization?
 
@@ -905,3 +1540,68 @@ export class ActivateGuard implements CanActivate {
 
     In summary, authentication confirms the user's identity, while authorization determines their level of access within the system.
 
+166. ### What is the purpose of innerHTML?
+     The innerHtml is a property of HTML-Elements, which allows you to set it's html-content programmatically. Let's display the below html code snippet in a `<div>` tag as below using innerHTML binding,
+
+     ```html
+     <div [innerHTML]="htmlSnippet"></div>
+     ```
+     and define the htmlSnippet property from any component
+     ```javascript
+     export class myComponent {
+       htmlSnippet: string = '<b>Hello World</b>, Angular';
+     }
+     ```
+     Unfortunately this property could cause Cross Site Scripting (XSS) security bugs when improperly handled.
+
+232. ### What is a provider?
+     A provider is an instruction to the Dependency Injection system on how to obtain a value for a dependency(aka services created). The service can be provided using Angular CLI as below,
+     ```javascript
+     ng generate service my-service
+     ```
+     The created service by CLI would be as below,
+     ```js
+     import { Injectable } from '@angular/core';
+
+     @Injectable({
+       providedIn: 'root', //Angular provide the service in root injector
+     })
+     export class MyService {
+     }
+     ```
+     **[⬆ Back to Top](#table-of-contents)**
+
+233. ### What is the recommendation for provider scope?
+     You should always provide your service in the root injector unless there is a case where you want the service to be available only if you import a particular @NgModule.
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+234. ### How do you restrict provider scope to a module?
+     It is possible to restrict service provider scope to a specific module instead making available to entire application. There are two possible ways to do it.
+     1. **Using providedIn in service:**
+         ```js
+         import { Injectable } from '@angular/core';
+         import { SomeModule } from './some.module';
+
+         @Injectable({
+           providedIn: SomeModule,
+         })
+         export class SomeService {
+         }
+         ```
+     2. **Declare provider for the service in module:**
+         ```js
+         import { NgModule } from '@angular/core';
+
+         import { SomeService } from './some.service';
+
+         @NgModule({
+           providers: [SomeService],
+         })
+         export class SomeModule {
+         }
+         ```
+243. ### What is NgZone?
+     Angular provides a service called NgZone which creates a zone named `angular` to automatically trigger change detection when the following conditions are satisfied.
+     1. When a sync or async function is executed.
+     2. When there is no microTask scheduled.
