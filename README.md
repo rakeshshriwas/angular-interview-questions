@@ -312,9 +312,10 @@
     A **Service** in Angular is a **reusable class** that contains **business logic**, **data access**, or **shared functionality** used across multiple components.
 
     **Key Points:**
-       Services help in separating logic from **UI (components)**, following the Separation of Concerns principle.
-       Services are **singleton** by default when provided in the root injector **(providedIn: 'root')**.
-       Typically used for:
+       - Services help in separating logic from **UI (components)**, following the Separation of Concerns principle.
+       - Services are **singleton** by default when provided in the root injector **(providedIn: 'root')**.
+    
+       **Typically used for:**
 
 	- API calls (e.g., via HttpClient)
 	- Shared data/state
