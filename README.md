@@ -310,8 +310,8 @@
 	- Push notifications
 	- Caching for performance
 
-Role of Service Worker in Angular:
-In Angular, the Service Worker is part of the Progressive Web App (PWA) capabilities, provided via the @angular/service-worker package.
+    Role of Service Worker in Angular:
+	In Angular, the Service Worker is part of the Progressive Web App (PWA) capabilities, provided via the @angular/service-worker package.
 
 16. ### What is a service?
     A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
