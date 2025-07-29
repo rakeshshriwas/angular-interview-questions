@@ -794,21 +794,21 @@
      
      The ng-content is used to insert the content dynamically inside the component that helps to increase component reusability. 
 
-     ```html
-	<div class="card">
-	 <div class="card-header">
-	   <ng-content select="[header]"></ng-content>
-	 </div>
-	 <div class="card-body">
-	   <ng-content></ng-content>
-	 </div>
-	</div>
-	
-	<my-card>
-	 <h2 header>My Card Header</h2>
-	 <p>This is the body content of my card.</p>
-	</my-card>
-      ```
+	    ```html
+		<div class="card">
+		 <div class="card-header">
+		   <ng-content select="[header]"></ng-content>
+		 </div>
+		 <div class="card-body">
+		   <ng-content></ng-content>
+		 </div>
+		</div>
+		
+		<my-card>
+		 <h2 header>My Card Header</h2>
+		 <p>This is the body content of my card.</p>
+		</my-card>
+	      ```
      
 256. ### What are reactive forms?
      Reactive forms is a model-driven approach for creating forms in a reactive style(form inputs changes over time). These are built around observable streams, where form inputs and values are provided as streams of input values. Let's follow the below steps to create reactive forms,
