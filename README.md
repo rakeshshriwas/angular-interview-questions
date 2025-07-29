@@ -399,7 +399,8 @@
      
 24. ### What is interpolation?
 
-    Interpolation is a special syntax that Angular converts into property binding. It’s a convenient alternative to property binding. It is represented by double curly braces({{}}). The text between the braces is often the name of a component property. Angular replaces that name with the string value of the corresponding component property.
+    **Interpolation** in Angular is a **template syntax** that allows you to **bind data from the component to the HTML view** using double curly braces {{ }}.
+    It’s mainly used to **display dynamic content** (like variables or expressions) in the UI.
 
     Let's take an example,
     ```html
