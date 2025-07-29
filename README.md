@@ -565,11 +565,7 @@
 	```
     **2. OnPush Change Detection Strategy**
 
-	Angular skips checking the component and its children unless:
-	- The component's @Input properties have changed.
-	- An event bound to the component is triggered.
-	- A manual trigger (ChangeDetectorRef) is used.
-	- Suitable for scenarios where the data flow is predictable and primarily driven by immutable inputs.
+	**OnPush** is a performance-optimized change detection strategy that tells Angular to only re-render a component when its **@Input() changes by reference** or when **manually triggered**.
 
 	```javascript
 	 @Component({
