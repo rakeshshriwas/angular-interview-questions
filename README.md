@@ -304,7 +304,14 @@
     ```
 
 108. ### What is a service worker and its role in Angular?
-     A service worker is a script that runs in the web browser and manages caching for an application. Starting from 5.0.0 version, Angular ships with a service worker implementation. Angular service worker is designed to optimize the end user experience of using an application over a slow or unreliable network connection, while also minimizing the risks of serving outdated content.
+     A Service Worker is a script that runs in the background of a web application, separate from the main browser thread. It enables powerful features like:
+	- Offline support
+	- Background sync
+	- Push notifications
+	- Caching for performance
+
+Role of Service Worker in Angular:
+In Angular, the Service Worker is part of the Progressive Web App (PWA) capabilities, provided via the @angular/service-worker package.
 
 16. ### What is a service?
     A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
