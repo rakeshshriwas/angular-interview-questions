@@ -783,7 +783,7 @@
      ```
      
 138. ### What is View Encapsulation
-     View Encapsulation is a concept that helps developers manage styles and avoid style conflicts in their applications. It ensures the isolation of styles defined within a component.
+     View Encapsulation is a concept that helps developers to manage styles and avoid style conflicts in their applications. It ensures the isolation of styles defined within a component.
      Angular supports three types of view encapsulation: Emulated, Shadow DOM, and None.
 
      - **Emulated:** Dynamically generates unique attributes to isolate styles within a component, ensuring they don't affect or get affected by styles in other components.
