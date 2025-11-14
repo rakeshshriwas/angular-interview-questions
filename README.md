@@ -303,18 +303,15 @@
      Role of Service Worker in Angular: In Angular, the Service Worker is part of the Progressive Web App (PWA) capabilities, provided via the @angular/service-worker package.
 
 16. ### What is a service?
-    A **Service** in Angular is a **reusable class** that contains **business logic**, **data access**, or **shared functionality** used across multiple components.
+    A **Service** in Angular is a reusable class used to handle shared logic such as data fetching, business rules, or communication between components. It works with dependency injection to keep components lightweight and maintainable.
 
-    **Key Points:**
-       - Services help in separating logic from **UI (components)**, following the Separation of Concerns principle.
-       - Services are **singleton** by default when provided in the root injector **(providedIn: 'root')**.
-    
-       **Typically used for:**
+    **Why Services Are Used:**
 
-	- API calls (e.g., via HttpClient)
-	- Shared data/state
-	- Utility functions
-	- Authentication logic
+ 	- To share data between components
+	- To perform API/HTTP calls
+	- To handle business logic in one place
+	- To improve code reusability and maintainability
+	- Works with Dependency Injection (DI)
 
     Let's create a repoService which can be used across components,
 
