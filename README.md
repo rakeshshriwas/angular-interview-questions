@@ -117,7 +117,7 @@
 		export class AppModule { }
 	   ```
 225. ### What are feature modules?
-     Feature modules are NgModules, which are used for the purpose of organizing code. The feature module can be created with Angular CLI using the below command in the root directory,
+     A Feature Module is a module created to organize specific features of your application. It helps keep the codebase modular, scalable, and clean.
      ```javascript
      ng generate module MyCustomFeature //
      ```
