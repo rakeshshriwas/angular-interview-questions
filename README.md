@@ -481,7 +481,7 @@
 	}
 	```
 59. ### What are dynamic components?
-    Dynamic components are the components in which the component's location in the application is not defined at build time i.e. they are not used in any angular template. Instead, the component is instantiated and placed in the application at runtime.
+   Dynamic components in Angular are components that are created and inserted into the DOM at runtime
 
 79. ### What is standalone component?
     A standalone component is a type of component which is not part of any Angular module. It provides a simplified way to build Angular applications.
