@@ -495,46 +495,6 @@
        providers: []
     })
     ```
-    The bootstrap process begins in main.ts, which is the entry point of the Angular application. This file contains code to bootstrap the root module (typically AppModule)
-    
-    ```javascript
-    import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'; import { AppModule } from './app/app.module'; 
-    
-    platformBrowserDynamic().bootstrapModule(AppModule) .catch(err => console.error(err)); //Bootstrap the root module 
-    ```
-    **Explanation:**
-    platformBrowserDynamic(): Creates a platform that is suitable for running Angular in a browser.
-    bootstrapModule(AppModule): Loads the root module (AppModule) and kicks off the application.
-    
-    The root module (usually AppModule) defines the entry point of the application. It declares which components, services, and other dependencies are part of the application.
-    ```javascript
-    import { NgModule } from '@angular/core';
-    import { BrowserModule } from '@angular/platform-browser';
-    import { AppComponent } from './app.component';
-    
-    @NgModule({
-      declarations: [AppComponent], // Declare the root component
-      imports: [BrowserModule],    // Import necessary modules
-      providers: [],               // Declare application-wide services
-      bootstrap: [AppComponent],   // Specify the root component to bootstrap
-    })
-    export class AppModule {}
-    ```
-    **Explanation:**
-    bootstrap: [AppComponent]: Specifies the root component that will be inserted into the index.html file.
-    Angular uses this component to render the initial view.
-    The root component (AppComponent) is the entry point to the application UI. It is linked to the DOM using a selector.
-    ```javascript
-    import { Component } from '@angular/core';
-    
-    @Component({
-      selector: 'app-root', // Matches the <app-root> tag in index.html
-      template: `<h1>Welcome to Angular!</h1>`,
-    })
-    export class AppComponent {}
-    ```
-    The index.html file contains the root component selector (e.g., <app-root>), which Angular replaces with the application content during the bootstrap process.
-
 79. ### What is change dedication strategy in angular?
     In Angular, change detection strategy determines how the framework tracks and updates the component's view in response to changes in data or inputs. Angular provides two primary change detection strategies
 
