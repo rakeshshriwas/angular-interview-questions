@@ -463,7 +463,7 @@
     Since the above service method returns an Observable which needs to be subscribed in the component.
 
 81. ### What are components?
-	Components are the most basic UI building block of an Angular app, which form a tree of Angular components. These components are a subset of directives. Unlike directives, components always have a template, and only one component can be instantiated per element in a template. Let's see a simple example of Angular component.
+	A component in Angular is a UI building block that combines a TypeScript class (logic), an HTML template (view), and optional CSS (styling) to control a specific part of the application’s interface.
 
 	```javascript
 	import { Component } from '@angular/core';
