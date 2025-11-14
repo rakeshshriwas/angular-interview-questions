@@ -209,7 +209,7 @@
         <input type="email" [(ngModel)]="user.email">
         ```
 13. ### What is metadata?
-    Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators
+    Metadata in Angular is configuration information provided through decorators that tells Angular how to process and use a class — for example, whether it's a component, module, service, directive, or pipe.
     1. **Class decorators**, e.g. @Component and @NgModule
         ```typescript
         import { NgModule, Component } from '@angular/core';
