@@ -280,10 +280,8 @@
         ```
 
 15. ### What is the difference between constructor and ngOnInit?
-    The **Constructor** is a default method of the class that is executed when the class is instantiated and ensures proper initialisation of fields in the class and its subclasses. Angular, or better Dependency Injector (DI), analyses the constructor parameters and when it creates a new instance by calling new MyClass() it tries to find providers that match the types of the constructor parameters, resolves them and passes them to the constructor.  
-    **ngOnInit** is a life cycle hook called by Angular to indicate that Angular is done creating the component.  
-    Mostly we use ngOnInit for all the initialization/declaration and avoid stuff to work in the constructor. The constructor should only be used to initialize class members but shouldn't do actual "work".
-    So you should use constructor() to setup Dependency Injection and not much else. ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
+    **Constructor** Runs when the component class is created and is mainly used for dependency injection.
+    **ngOnInit** is a lifecycle hook called by Angular that runs after the constructor and is used for component initialization, such as making API calls or accessing @Input() data.
 
     ```typescript
     export class App implements OnInit{
