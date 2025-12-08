@@ -1494,6 +1494,9 @@
       Route parameters provide a flexible way to handle dynamic data in your Angular application. They allow you to create routes that can be easily customized and provide a seamless user experience by reflecting the current state of the application in the URL.
 
 79. ### What is lazy loading?
+	Lazy loading in Angular is a performance optimization technique where feature modules are loaded only when they are needed, instead of loading everything at startup.
+    This reduces the initial bundle size, speeds up application load time, and improves overall user experience.
+-------------
     Lazy loading in Angular is a design pattern and technique used to improve the performance of an application by loading modules and components only when they are needed. Instead of loading all modules at the start, lazy loading defers the loading 
     of certain modules until they are required, reducing the initial load time and improving the user experience.
 
