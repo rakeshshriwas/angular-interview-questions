@@ -1434,7 +1434,13 @@
 12. ### Route Guards in Angular
     In Angular, guards are special classes used to control and manage access to different parts of an application. They decide whether a user can navigate to a particular route or perform certain actions based on specific conditions, like checking if the user is logged in or has the necessary permissions.
 
-    **CanActivate:** Determines if a route can be activated and allows navigation based on certain conditions
+    **CanActivate:** Controls whether a user can access a route. **Example:** Allow only logged-in users to visit /dashboard.
+    
+    **CanDeactivate:** Controls whether a user can leave a route. **Example:** Show a warning if a user tries to leave a form with unsaved changes.
+   
+    **CanActivateChild:** Controls access to child routes. **Example:** Protect all pages inside an admin dashboard.
+   
+    **CanLoad:** Prevents lazy-loaded modules from being loaded. **Example:** Don’t load the admin module if the user is not authorized.
 	
 	```javascript
 	@Injectable({
@@ -1457,10 +1463,7 @@
 	  }
 	}
 	```
- 
-   **CanActivateChild:** Similar to CanActivate but controls the activation of child routes.
-   **CanDeactivate:** Checks if a route can be deactivated, often used to confirm navigation away from a route.
-   **CanLoad:** Prevents a module from being loaded lazily until certain conditions are met.
+
 
 282. ### What are the Route Parameters? Could you explain each of them?.
       Route parameters are used to pass dynamic values in the URL of a route. They allow you to define variable segments in the route path, which can be accessed and used by components and services. Path parameters are represented by a colon (":") followed by the parameter name.
