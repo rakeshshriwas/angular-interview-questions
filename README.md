@@ -1584,6 +1584,9 @@
          }
          ```
 243. ### What is NgZone?
-     Angular provides a service called NgZone which creates a zone named `angular` to automatically trigger change detection when the following conditions are satisfied.
-     1. When a sync or async function is executed.
-     2. When there is no microTask scheduled.
+     Angular provides a service called NgZone. NgZone tells Angular when something has changed in the app so it should update the UI. It tracks async tasks like setTimeout, HTTP requests, Promises, etc., and triggers change detection 	     		 automatically.
+
+	 **Two important methods**
+
+	 - ngZone.run()
+	 - ngZone.runOutsideAngular()
