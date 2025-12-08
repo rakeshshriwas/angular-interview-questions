@@ -282,7 +282,7 @@
 15. ### What is the difference between constructor and ngOnInit?
     **Constructor** Runs when the component class is created and is mainly used for dependency injection.
     
-    **ngOnInit** is a lifecycle hook called by Angular that runs after the constructor and is used for component initialization, such as making API calls or accessing @Input() data.
+    **ngOnInit** This lifecycle hook is executed after the component's constructor method and is a good place to perform initial setup for the component.
 
     ```typescript
     export class App implements OnInit{
