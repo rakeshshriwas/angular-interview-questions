@@ -2,12 +2,6 @@
 
 ---
 
-### Table of Contents
-
-| No. | Questions |
-|---- | ---------
-|1 | [What is pipe?](#)|
-
 1. ### What Is Angular
     Angular is a framework for building dynamic, single-page web applications (SPAs) using TypeScript, HTML, and CSS. Developed and maintained by Google, Angular provides a complete toolkit for developers to create complex, feature-rich applications efficiently.
 
