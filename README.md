@@ -14,6 +14,19 @@
     6. **Forms**: Angular provides robust form handling with validation, making it easier to work with user input.
     7. **HttpClient**: Angular includes a service for making HTTP requests to APIs, handling asynchronous operations efficiently
 
+3. ### Explain Angular architecture
+	Angular is a component-based front-end framework built with TypeScript, used to create Single Page Applications (SPAs). Its architecture follows a modular and structured approach.
+
+	1. Angular follows a component-based architecture. The application is organized into modules, with AppModule as the root module. Each module contains components, services, and other related files.
+
+	2. Components control the UI and consist of a template, class, and metadata. Angular uses data binding to synchronize data between the template and component class.
+
+	3. Services are used to handle business logic and API communication, and Angular’s dependency injection system manages service instances.
+
+	4. Routing enables navigation between views in a single-page application. Angular also uses RxJS Observables for handling asynchronous operations like HTTP requests.
+
+	Overall, Angular architecture promotes modularity, reusability, and maintainability.
+
 2. ### What is angular CLI?
     The Angular CLI (Command Line Interface) is a powerful tool provided by the Angular team that simplifies the development, testing, and deployment of Angular applications. It provides a set of commands that help developers streamline and automate 
     various tasks associated with Angular projects.
