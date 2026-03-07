@@ -341,6 +341,15 @@
     ```
     The above service uses Http service as a dependency.
 
+17. ### What is singletone service
+	Singleton Service in Angular is a service that is instantiated only once and shared across the entire application using Angular's dependency injection system.
+
+	```javascript
+	   @Injectable({
+		  providedIn: 'root'
+	   })
+ 	```
+
 140. ### How do you pass headers for HTTP client?
      You can directly pass object map for http client or create HttpHeaders class to supply the headers.
 
