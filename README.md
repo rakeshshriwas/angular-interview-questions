@@ -72,41 +72,6 @@
 81. ### What is a template?
     A template is a HTML view where you can display data by binding controls to properties of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.
 
-   	**Using inline template with template syntax**
-    
-	    ```javascript
-	    import { Component } from '@angular/core';
-	
-	    @Component ({
-	       selector: 'my-app',
-	       template: '
-	          <div>
-	             <h1>{{title}}</h1>
-	             <div>Learn Angular</div>
-	          </div>
-	       '
-	    })
-	
-	    export class AppComponent {
-	       title: string = 'Hello World';
-	    }
-	    ```
-    
-       **Using separate template file such as app.component.html**
-    
-	    ```javascript
-	    import { Component } from '@angular/core';
-	
-	    @Component ({
-	       selector: 'my-app',
-	       templateUrl: 'app/app.component.html'
-	    })
-	
-	    export class AppComponent {
-	       title: string = 'Hello World';
-	    }
-	    ```
-
 81. ### What is a module?
 	Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application. Lets take an example of app.module.ts root module declared with @NgModule decorator as below,
 
