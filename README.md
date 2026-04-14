@@ -395,52 +395,6 @@
     4. Supports Observable APIs
     5. Supports streamlined error handling
 
-37. ### Explain on how to use `HttpClient` with an example?
-    Below are the steps need to be followed for the usage of `HttpClient`.
-    1. Import `HttpClient` into root module:
-        ```javascript
-        import { HttpClientModule } from '@angular/common/http';
-        @NgModule({
-          imports: [
-            BrowserModule,
-            // import HttpClientModule after BrowserModule.
-            HttpClientModule,
-          ],
-          ......
-          })
-         export class AppModule {}
-        ```
-    2. Inject the `HttpClient` into the application:
-        Let's create a userProfileService(`userprofile.service.ts`) as an example. It also defines get method of `HttpClient`:
-        ```javascript
-        import { Injectable } from '@angular/core';
-        import { HttpClient } from '@angular/common/http';
-
-        const userProfileUrl: string = 'assets/data/profile.json';
-
-        @Injectable()
-        export class UserProfileService {
-          constructor(private http: HttpClient) { }
-
-          getUserProfile() {
-            return this.http.get(this.userProfileUrl);
-          }
-        }
-        ```
-    3. Create a component for subscribing service:
-        Let's create a component called UserProfileComponent(`userprofile.component.ts`), which injects `UserProfileService` and invokes the service method:
-        ```javascript
-        fetchUserProfile() {
-          this.userProfileService.getUserProfile()
-            .subscribe((data: User) => this.user = {
-                id: data['userId'],
-                name: data['firstName'],
-                city:  data['city']
-            });
-        }
-        ```
-    Since the above service method returns an Observable which needs to be subscribed in the component.
-
 81. ### What are components?
 	A component in Angular is a UI building block that combines a TypeScript class (logic), an HTML template (view), and optional CSS (styling) to control a specific part of the application’s interface.
 
