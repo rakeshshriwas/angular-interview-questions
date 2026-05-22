@@ -1490,9 +1490,6 @@
      export class MyService {
      }
      ```
-233. ### What is the recommendation for provider scope?
-     You should always provide your service in the root injector unless there is a case where you want the service to be available only if you import a particular @NgModule.
-
 234. ### How do you restrict provider scope to a module?
      It is possible to restrict service provider scope to a specific module instead making available to entire application. There are two possible ways to do it.
      1. **Using providedIn in service:**
