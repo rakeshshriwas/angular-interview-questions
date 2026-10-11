@@ -1236,31 +1236,6 @@
      export class AppModule {}
      ```
 
-79. ### ⁠How can handel error in angular
-    You can handle responses and errors using RxJS operators like map() and catchError().
-    
-    ```javascript
-	@Injectable({
-	  providedIn: 'root'
-	})
-	export class ApiService {
-	  private apiUrl = 'https://api.example.com/data'; // Replace with your API URL
-	  constructor(private http: HttpClient) { }
-	
-	  getData(): Observable<any> {
-	    return this.http.get<any>(this.apiUrl).pipe(
-	      catchError(this.handleError)
-	    );
-	  }
-	
-	  private handleError(error: any) {
-	    // Handle the error here (e.g., log it, show a user-friendly message, etc.)
-	    console.error('An error occurred:', error);
-	    return throwError(() => new Error('Something went wrong; please try again later.'));
-	  }
-	}
-    ```
-
 63. ### What is Angular Router?
     Angular Router is a mechanism in which navigation happens from one view to the next as users perform application tasks. It borrows the concepts or model of browser's application navigation. It enables developers to build Single Page Applications with multiple views and allow navigation between these views.
     
@@ -1384,38 +1359,6 @@
 	}
 	```
 
-
-282. ### What are the Route Parameters? Could you explain each of them?.
-      Route parameters are used to pass dynamic values in the URL of a route. They allow you to define variable segments in the route path, which can be accessed and used by components and services. Path parameters are represented by a colon (":") followed by the parameter name.
-
-      There are three types of route parameters in Angular:
-
-      **Path parameters:** Path parameters are used to define dynamic segments in the URL path. They are specified as part of the route's path and are extracted from the actual URL when navigating to that route. Path parameters are represented by a colon (":") followed by the parameter name. For example:
-
-      ```typescript
-      { path: 'users/:id', component: UserComponent }
-      ```
-
-      In this example, ":id" is the path parameter. When navigating to a URL like "/users/123", the value "123" will be extracted and can be accessed in the UserComponent.
-
-      **Query parameters:** Query parameters are used to pass additional information in the URL as key-value pairs. They are appended to the URL after a question mark ("?") and can be accessed by components and services. Query parameters are not part of the route path, but they provide additional data to the route. For example:
-
-      ```typescript
-      { path: 'search', component: SearchComponent }
-      ```
-
-      In this example, a URL like "/search?query=angular" contains a query parameter "query" with the value "angular". The SearchComponent can retrieve the value of the query parameter and use it for searching.
-
-      **Optional parameters:** Optional parameters are used when you want to make a route parameter optional. They are represented by placing a question mark ("?") after the parameter name. Optional parameters can be useful when you have routes with varying parameters. For example:
-
-      ```typescript
-      { path: 'products/:id/:category?', component: ProductComponent }
-      ```
-
-      In this example, the ":category" parameter is optional. The ProductComponent can be accessed with URLs like "/products/123" or "/products/123/electronics". If the ":category" parameter is present in the URL, it will be available in the component, otherwise, it will be undefined.
-
-      Route parameters provide a flexible way to handle dynamic data in your Angular application. They allow you to create routes that can be easily customized and provide a seamless user experience by reflecting the current state of the application in the URL.
-
 79. ### What is lazy loading?
 	Lazy loading in Angular is a performance optimization technique where feature modules are loaded only when they are needed, instead of loading everything at startup.
     This reduces the initial bundle size, speeds up application load time, and improves overall user experience.
@@ -1477,34 +1420,7 @@
      export class MyService {
      }
      ```
-234. ### How do you restrict provider scope to a module?
-     It is possible to restrict service provider scope to a specific module instead making available to entire application. There are two possible ways to do it.
-     1. **Using providedIn in service:**
-        
-         ```js
-         import { Injectable } from '@angular/core';
-         import { SomeModule } from './some.module';
 
-         @Injectable({
-           providedIn: SomeModule,
-         })
-         export class SomeService {
-         }
-         ```
-         
-     3. **Declare provider for the service in module:**
-        
-         ```js
-         import { NgModule } from '@angular/core';
-
-         import { SomeService } from './some.service';
-
-         @NgModule({
-           providers: [SomeService],
-         })
-         export class SomeModule {
-         }
-         ```
 243. ### What is NgZone?
      Angular provides a service called NgZone. NgZone tells Angular when something has changed in the app so it should update the UI. It tracks async tasks like setTimeout, HTTP requests, Promises, etc., and triggers change detection 	     		 automatically.
 
